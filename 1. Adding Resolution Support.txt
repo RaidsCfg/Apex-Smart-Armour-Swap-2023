@@ -1,0 +1,40 @@
+!!!! Uncomment ;0::debug() > run the script > press 0 to run debug mode. Use the boxes as reference points when adding custom resolutions in Smart Armour Swap.ahk !!!!
+
+============================
+1. In data > shields:
+- Create a folder with the resolution you want
+- Take screenshots of all the evo shields from a deathbox in the firing range. Copy the image format from one of the existing resolutions.
+
+============================
+2. In data > ui:
+- Create a folder with the resolution you want
+- Take screenshots of the 'Esc' option from a deathbox in the firing range and the 'Nearby' text in a Loba black market. Copy the image format from one of the existing resolutions.
+
+============================
+3. In lib folder open 'Set Resolution.ahk'
+- Underneath Resolution3 := "1680x1050" add Resolution4 := "WidthxHeight" and change it to your resolution
+- Underneath 
+case "1680x1050":
+        DetectedResolution := Resolution3
+Add:
+case "WidthxHeight": (change it to your resolution)
+        DetectedResolution := Resolution4
+
+- Underneath
+case "1680x1050":
+        shieldFolder := A_scriptDir "\data\shields\1680"
+        uiFolder := A_scriptDir "\data\ui\1680"
+Add:
+case "WidthxHeight": (change it to your resolution)
+        shieldFolder := A_scriptDir "\data\shields\YOUR RESOLUTION"
+        uiFolder := A_scriptDir "\data\ui\YOUR RESOLUTION"
+
+============================
+4. In Smart Armour Swap.ahk
+- Image reference for detectshieldcolor() pixel location: https://imgur.com/a/xeORtC0 use shift+tab to open steam overlay while in-game so you can accurately get the location of the pixel
+- Scan.getpixel uses X, Y, 1 (only change X and Y)
+- Scan.imageregion uses ImageLoc, X, Y, W, H, Variance, OutputX, OutputY (Only change X, Y, W, H)
+
+
+
+

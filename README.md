@@ -1,7 +1,7 @@
 # Apex-Smart-Armour-Swap-2023
-Lightweight Smart Auto Armour Swapper for Apex Legends
-[Watch Demo Video Here](https://www.youtube.com/watch?v=3bRq1fnAXR4)
 
+- [Watch Demo Video Here](https://www.youtube.com/watch?v=3bRq1fnAXR4)
+- [Our Discord Group](https://discord.com/invite/F5k5Et3EzN)
 ## About
 This script is designed in AHK to automatically swap to an armour within a deathbox ONLY if it has more health than your current shield. Everything is done externally so theoretically it is 100% safe to use. The script is pretty straight forward and easy to read, you can change your deathbox keybind at the bottom of the script and easily add support for your own resolutions.
 Everything is done by the script without the need for extra hotkeys or button presses. Simply open a deathbox using E and the rest will be done for you.
@@ -21,6 +21,13 @@ Everything is done by the script without the need for extra hotkeys or button pr
 2. Run 'Smart Armour Swap.ahk'
 - As long as you have a supported resolution, the script will run otherwise it will not
 - A text file in the folder explains how to add custom resolutions
+
+## Known Issues and Fixes
+Issue:
+- SendMode Input can sometimes be too fast and causes your cursor to move to the shield but not click.
+
+Fix:
+- Comment out SendMode Input and replace "Click %X%, %Y%" with "MouseClick, Left, X, Y, , 0" 0 = speed. 0 is fastest 100 is slowest
 
 ## Color Detection
 ###

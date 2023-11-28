@@ -1,4 +1,6 @@
 # Apex-Smart-Armour-Swap-2023
+- [Watch Demo Video](https://www.youtube.com/watch?v=3bRq1fnAXR4)
+- [Discord](https://discord.com/invite/F5k5Et3EzN)
 
 ## About
 This script is designed in AHK to automatically swap to an armour within a deathbox ONLY if it has more health than your current shield. Everything is done externally so theoretically it is 100% safe to use. The script is pretty straight forward and easy to read, you can change your deathbox keybind at the bottom of the script and easily add support for your own resolutions.

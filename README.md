@@ -17,7 +17,8 @@ Everything is done by the script without the need for extra hotkeys or button pr
 ## Installation
 1. Download and extract the folder
 2. Run 'Smart Armour Swap.ahk'
-- As long as you have a supported resolution, the script will run otherwise it will not
+3. "Process Hidden" will appear on your cursor for a second indicating the script is running, you can also check in your tray icons
+- As long as you have a supported resolution and no filters as stated below, the script will run.
 - A text file in the folder explains how to add custom resolutions
 
 ## Known Issues and Fixes

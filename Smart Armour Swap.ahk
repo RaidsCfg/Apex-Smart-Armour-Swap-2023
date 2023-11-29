@@ -68,10 +68,8 @@ BoxIsOpen() { ;checks if deathbox/loba market is open. if loba market is open it
     }  
 }
 CheckBoxHealth(threshold, x, y) { ;checks the health of the shield in the deathbox. Does the same as ShieldHealthBelow function but for deathbox. Compares your shield to deathbox shield health
-    if (WornShield = None) {
-        tooltip, none
+    if (WornShield = None)
         return false
-    }
     switch (DetectedResolution) {
         case "1920x1080":
             Modifier := (WornShield = White) ? 62 : (WornShield = Blue) ? 94 : (WornShield = Purple) ? 125 : 156

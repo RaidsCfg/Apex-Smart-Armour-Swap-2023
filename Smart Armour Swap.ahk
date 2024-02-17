@@ -17,7 +17,7 @@ global WornShield
 global ShieldisFull := true
 global Thresh := 100
 global SwappableShields := []
-global White := 0xBFBFBF, Blue := 0x1E8FFD, Gold := 0xFDCB3B, Purple := 0x9E2BFF, Red := 0xFD0202, Grey := 0x4B4B4B, None := 0
+global White := 0xBFBFBF, Blue := 0x1E8FFD, Purple := 0x9E2BFF, Red := 0xFD0202, Grey := 0x4B4B4B, None := 0
 global shieldFolder, uiFolder
 global scan := new ShinsImageScanClass("")
 
@@ -30,7 +30,7 @@ DetectShieldColor() { ;checks ur shields color
         case "1680x1050":
             WornShield := Format("0x{:06X}", scan.GetPixel(159, 980, 1)) ;checks pixel color at point 159, 980
     }
-    WornShield := (WornShield = White) ? White : (WornShield = Blue) ? Blue : (WornShield = Gold) ? Gold : (WornShield = Purple) ? Purple : (WornShield = Red) ? Red : None
+    WornShield := (WornShield = White) ? White : (WornShield = Blue) ? Blue : (WornShield = Purple) ? Purple : (WornShield = Red) ? Red : None
 }
 
 ShieldHealthBelow(threshold) { ;checks ur shields health
@@ -92,7 +92,7 @@ DetermineShieldUpgrade() { ;determines which shield to swap to
         return
     DetectShieldColor()
     if (WornShield = None) {
-        SwappableShields := ["Red", "Purple", "Gold", "Blue", "White"]
+        SwappableShields := ["Red", "Purple", "Blue", "White"]
         return
     }
     if (ShieldHealthBelow(100)) { ;if ur shield is below 100% it checks the threshold of your shield, sets the threshold to check in CheckBoxHealth function and determines your swap
@@ -100,16 +100,16 @@ DetermineShieldUpgrade() { ;determines which shield to swap to
         switch (WornShield) {
             case White:
                 Thresh := ShieldHealthBelow(50) ? 50 : 100
-                SwappableShields := ["Red", "Purple", "Gold", "Blue", "White"]
+                SwappableShields := ["Red", "Purple", "Blue", "White"]
             case Blue:
                 Thresh := ShieldHealthBelow(33) ? 33 : (ShieldHealthBelow(66) ? (Thresh := 66, "White") : 100)
-                SwappableShields := (ShieldHealthBelow(66) || ShieldHealthBelow(33)) ? ["Red", "Purple", "Gold", "Blue", "White"] : ["Red", "Purple", "Gold", "Blue"]
-            case Purple, Gold:
+                SwappableShields := (ShieldHealthBelow(66) || ShieldHealthBelow(33)) ? ["Red", "Purple", "Blue", "White"] : ["Red", "Purple", "Blue"]
+            case Purple:
                 Thresh := ShieldHealthBelow(50) ? 50 : (ShieldHealthBelow(75) ? 75 : 100)
-                SwappableShields := (ShieldHealthBelow(50) ? ["Red", "Purple", "Gold", "Blue", "White"] : (ShieldHealthBelow(75) ? ["Red", "Purple", "Gold", "Blue"] : ["Red", "Purple", "Gold"]))
+                SwappableShields := (ShieldHealthBelow(50) ? ["Red", "Purple", "Blue", "White"] : (ShieldHealthBelow(75) ? ["Red", "Purple", "Blue"] : ["Red", "Purple"]))
             case Red:
                 Thresh := ShieldHealthBelow(40) ? 40 : (ShieldHealthBelow(60) ? 60 : (ShieldHealthBelow(80) ? 80 : 100))
-                SwappableShields := (ShieldHealthBelow(40) ? ["Red", "Purple", "Gold", "Blue", "White"] : (ShieldHealthBelow(60) ? ["Red", "Purple", "Gold", "Blue"] : (ShieldHealthBelow(80) ? ["Red", "Purple", "Gold"] : ["Red"])))
+                SwappableShields := (ShieldHealthBelow(40) ? ["Red", "Purple", "Blue", "White"] : (ShieldHealthBelow(60) ? ["Red", "Purple", "Blue"] : (ShieldHealthBelow(80) ? ["Red", "Purple"] : ["Red"])))
         }
         return
     }
@@ -117,10 +117,10 @@ DetermineShieldUpgrade() { ;determines which shield to swap to
         ShieldisFull := True
         switch (WornShield) {
             case White:
-                SwappableShields := ["Red", "Purple", "Gold", "Blue"]
+                SwappableShields := ["Red", "Purple", "Blue"]
             case Blue:
-                SwappableShields := ["Red", "Purple", "Gold"]
-            case Purple, Gold:
+                SwappableShields := ["Red", "Purple"]
+            case Purple:
                 SwappableShields := ["Red"]
             case Red:
                 SwappableShields := []
@@ -148,7 +148,7 @@ SwapArmour() { ;swaps your armour
                     FoundCount := scan.ImageRegion(ImagePath, 68, 123, 521, 803, 25, X, Y)
             }
             if (FoundCount > 0) {
-                BlockInput, ON
+                ;BlockInput, ON
                 if (CheckBoxHealth(ShieldisFull ? 100 : Thresh, X, Y))
                     return
                 Random, ExtraX, -4, 86
@@ -156,7 +156,7 @@ SwapArmour() { ;swaps your armour
                 X += ExtraX, Y += ExtraY
                 Click %X%, %Y%
                 Sleep, 100
-                BlockInput, OFF
+                ;BlockInput, OFF
                 return
             } 
             Sleep, 10

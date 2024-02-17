@@ -78,8 +78,6 @@ GetColorName(Color) {
             return "White"
         case Blue:
             return "Blue"
-        case Gold:
-            return "Gold"
         case Purple:
             return "Purple"
         case Red:
